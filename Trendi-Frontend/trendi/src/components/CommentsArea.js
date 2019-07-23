@@ -11,7 +11,7 @@ export default class CommentsArea extends Component {
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="form-group">
-                                            <input type="text" placeholder=""> </input>
+                                            <textarea  className="form-control" name="commentary" id="commentary" cols="30" rows="10"></textarea>
                                         </div>
                                     </div>
 
