@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import logo from '../iconos/icono.png';
+import { Link } from 'react-router-dom'
 import '../styles.css';
+import logo from '../iconos/icono.png';
+
 export default class LoginForm extends Component {
 
+  
 
     handleSubmit = (e) => {
         e.preventDeafault();
@@ -24,6 +27,7 @@ export default class LoginForm extends Component {
                                         <input  type="password" className="form-control" name="pass" id ="pass" placeholder="contraseña"/>
                                     </div>
                                     <button type="submit" class="btn btn-primary mb-2">Ingreso</button>
+                                    <label className="ml-5"><Link to="/signup">Registrate</Link></label>
                                 </form>
                             </div>
                         </div>

@@ -5,6 +5,7 @@ import CommentsArea from './components/CommentsArea';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 
 class App extends React.Component {
 
@@ -33,6 +34,7 @@ class App extends React.Component {
           to="/login" />
         <Switch>
           <Route path="/login" component={LoginForm}/>
+          <Route path="/signup" component={SignupForm}/>
         </Switch>
       </div>
       </BrowserRouter>
