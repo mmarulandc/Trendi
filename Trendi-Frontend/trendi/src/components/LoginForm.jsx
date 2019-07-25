@@ -19,14 +19,14 @@ export default class LoginForm extends Component {
                         <div className="card col-6 center" >
                             <div className="card-body">
                                 <img src={logo} alt="logo " className="logo-center"></img>
-                                <form action={this.handleSubmit} className="mt-3">
+                                <form onSubmit={this.handleSubmit} className="mt-3">
                                     <div className="form-group">
-                                        <input  type="text" className="form-control" name="name" id ="name" placeholder="usuario" hand/>
+                                        <input  type="text" className="form-control" name="name" id ="name" placeholder="usuario"/>
                                     </div>
                                     <div className="form-group">
                                         <input  type="password" className="form-control" name="pass" id ="pass" placeholder="contraseña"/>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mb-2">Ingreso</button>
+                                    <button type="submit" className="btn btn-primary mb-2">Ingreso</button>
                                     <label className="ml-5"><Link to="/signup">Registrate</Link></label>
                                 </form>
                             </div>
