@@ -29,12 +29,11 @@ class App extends React.Component {
         <Header
           header = {"TRENDI"}
         />
-        <Redirect
-          from="/"
-          to="/login" />
+
         <Switch>
           <Route path="/login" component={LoginForm}/>
           <Route path="/signup" component={SignupForm}/>
+          <Route path="/trendi" component={CommentsArea}/>
         </Switch>
       </div>
       </BrowserRouter>
