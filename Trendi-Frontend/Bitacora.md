@@ -4,4 +4,6 @@
 
 * 24 de Julio del 2019: Bitacora del desarrollador, acabo de hacer un servicio de signup, pero no logro enlazarlo al backend... no todavia.
 
-*25 de Julio del 2019: Bitacora del desarrollador, acabo de consumir correctamente el servicio de signup.
+* 25 de Julio del 2019: Bitacora del desarrollador, acabo de consumir correctamente el servicio de signup.
+
+* 26 de Julio del 2019: Bitacora del desarrollador, acabo el login ya funciona correctamente.

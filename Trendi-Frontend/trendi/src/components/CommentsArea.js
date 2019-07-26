@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
 
 export default class CommentsArea extends Component {
+
+    state = {
+        username: ''
+    }
+    componentDidMount(){
+        this.setState({
+            username:this.props.username
+        })
+        alert("Bienvenido @"+this.props.username)
+    }
     render() {
         return (
             <div>

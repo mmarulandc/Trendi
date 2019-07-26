@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 
 authCtrl.login = (req,res,next) => {
     let FindedUser;
+    
     User.findOne({username: req.body.username})
         .then(user =>  {
             if(!user) {
@@ -14,6 +15,7 @@ authCtrl.login = (req,res,next) => {
                     message: "there is not a user with the username " + req.body.username
                 });
             }
+            console.log("usuario encontrado")
             FindedUser = user;
             return  bcrypt.compare(req.body.password, user.password);
         })
@@ -22,8 +24,10 @@ authCtrl.login = (req,res,next) => {
                 return res.status(401).json({
                     message: "Password does not match"
                 });
+
             }
-            const token = jwt.sign({username: usuarioEncontrado.username, password: usuarioEncontrado.password}, "palabra_secreta_que_deberia_guardar_y_hashear_en_la_db", 
+            console.log("contraseña coincide")
+            const token = jwt.sign({username: FindedUser.username, password: FindedUser.password}, "palabra_secreta_que_deberia_guardar_y_hashear_en_la_db", 
             {expiresIn: "1h"}
             );
             res.status(200).json({

@@ -20,7 +20,11 @@ class App extends React.Component {
       }
     ]
   }
-
+  sendName = (name) => {
+    this.setState({
+      username:name
+    });
+  }
   render() {
     return (
       <BrowserRouter>
@@ -31,9 +35,9 @@ class App extends React.Component {
         />
 
         <Switch>
-          <Route path="/login" component={LoginForm}/>
+          <Route path="/login" render={(props) => <LoginForm {...props} sendName={this.sendName}/>}/>
           <Route path="/signup" component={SignupForm}/>
-          <Route path="/trendi" component={CommentsArea}/>
+          <Route path="/trendi" render={(props) => <CommentsArea {...props} username={this.state.username}/>}/>
         </Switch>
       </div>
       </BrowserRouter>

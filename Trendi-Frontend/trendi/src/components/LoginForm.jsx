@@ -6,7 +6,7 @@ import AuthService from '../AuthService';
 
 export default class LoginForm extends Component {
     
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             username:'',
@@ -17,17 +17,16 @@ export default class LoginForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit = (event) => {
-        
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.sendName(this.state.username);
         this.Auth.login(this.state.username,this.state.password)
-        .then(res =>{
-           this.props.history.replace('/trendi');
-        })
-        .catch(err =>{
-            alert(err);
-        })
-        event.preventDeafault();
-
+            .then(res =>{
+               this.props.history.replace('/trendi');
+            })
+            .catch(err =>{
+                alert(err);
+            })
     }
 
     handleChange = (event) => {
