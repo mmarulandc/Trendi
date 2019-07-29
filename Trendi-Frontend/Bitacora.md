@@ -7,3 +7,5 @@
 * 25 de Julio del 2019: Bitacora del desarrollador, acabo de consumir correctamente el servicio de signup.
 
 * 26 de Julio del 2019: Bitacora del desarrollador, acabo el login ya funciona correctamente.
+
+* 29 de Julio del 2019: Bitacora del desarrollador, terminé correctamente un login y un logout, además de consumir varios servicios para los diferentes post.

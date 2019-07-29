@@ -11,8 +11,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
-
+//routes
 app.use('/api/auth', require('./routes/UserLogin.routes'));
+app.use('/api/post', require('./routes/Post.routes'));
+
 app.listen(3000,()=>{
     console.log("Running in port 3000")
 });

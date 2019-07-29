@@ -30,9 +30,7 @@ class App extends React.Component {
       <BrowserRouter>
       <div className="App">
 
-        <Header
-          header = {"TRENDI"}
-        />
+ 
 
         <Switch>
           <Route path="/login" render={(props) => <LoginForm {...props} sendName={this.sendName}/>}/>
