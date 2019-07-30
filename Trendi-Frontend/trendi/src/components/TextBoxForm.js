@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
 
- export default class TextBoxForm extends Component {
+export default class TextBoxForm extends Component {
     
     state = {
-        username: localStorage.getItem('username'),
+        username: '',
         trend: '',
         commentary: ''
     }
+
+    getCommentaries = () =>{
+        fetch('http://localhost:3000/api/post/')
+        .then(res => res.json())
+        .then(data => {
+            this.setState({
+                commentaries:data
+            })
+        })
+   }
 
     onSubmit = (event) => {
         event.preventDefault();
@@ -25,8 +35,16 @@ import React, { Component } from 'react'
                 trend:'',
                 commentary:''
             })
+            this.props.getCommentaries();
         }).catch(err => console.log(err))
         
+    }
+    componentWillReceiveProps(){
+        console.log(this.props)
+        this.setState({
+            username:this.props.username
+        })
+        console.log(this.state)
     }
 
     onChange= (event) => {
@@ -47,7 +65,7 @@ import React, { Component } from 'react'
                             <div className="form-group">
                                 <input className="form-control mb-2" value={this.state.trend} name="trend" id="trend" placeholder="Trend" onChange={this.onChange}/>
                                 <textarea  className="form-control" value={this.state.commentary} name="commentary" id="commentary" cols="30" rows="5" onChange={this.onChange}></textarea>
-                                <button class="btn btn-primary mt-2" type="submit" >Postear</button>
+                                <button className="btn btn-primary mt-2" type="submit" >Postear</button>
                             </div>
                         </div>
                         

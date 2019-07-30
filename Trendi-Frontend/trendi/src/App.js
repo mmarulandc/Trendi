@@ -1,9 +1,6 @@
 import React from 'react';
-import Header from './components/Header';
 import CommentsArea from './components/CommentsArea';
-
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 

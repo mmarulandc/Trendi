@@ -22,7 +22,7 @@ class Header extends React.Component {
             </div>
 
             </div>
-            <button class="btn btn-outline-light my-2 my-sm-0" onClick={this.props.handleLogout}>Log Out</button>
+            <button className="btn btn-outline-light my-2 my-sm-0" onClick={this.props.handleLogout}>Log Out</button>
             </nav>
         );
     }

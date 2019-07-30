@@ -32,5 +32,19 @@ router.get('/',async(req,res)=>{
     res.json(commentaries);
 })
 
+router.delete('/:id', async(req,res) =>{
+   await Commentary.findByIdAndDelete(req.params.id);
+   res.json({message:'comment deleted'});
+})
+
+router.put('/:id', async(req,res) =>{
+   await Commentary.findByIdAndUpdate(req.params.id,{
+        trend:req.body.trend,
+        commentary: req.body.commentary
+    })
+    res.json({
+        message:'Comment updated'
+    })
+})
 
 module.exports = router;
