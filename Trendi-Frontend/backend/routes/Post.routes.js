@@ -30,12 +30,12 @@ router.post('/',async (req,res)=> {
 router.get('/',async(req,res)=>{
     const commentaries = await Commentary.find();
     res.json(commentaries);
-})
+});
 
 router.delete('/:id', async(req,res) =>{
    await Commentary.findByIdAndDelete(req.params.id);
    res.json({message:'comment deleted'});
-})
+});
 
 router.put('/:id', async(req,res) =>{
    await Commentary.findByIdAndUpdate(req.params.id,{
@@ -45,6 +45,12 @@ router.put('/:id', async(req,res) =>{
     res.json({
         message:'Comment updated'
     })
-})
+}
+);
+
+router.get('/:trend', async(req,res) =>{
+   const commentaries = await Commentary.find({"trend" : req.params.trend})
+    res.json(commentaries)
+});
 
 module.exports = router;

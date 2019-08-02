@@ -27,7 +27,7 @@ class App extends React.Component {
       <BrowserRouter>
       <div className="App">
 
- 
+  
 
         <Switch>
           <Route path="/login" render={(props) => <LoginForm {...props} sendName={this.sendName}/>}/>

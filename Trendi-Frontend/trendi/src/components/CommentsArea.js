@@ -21,10 +21,18 @@ class CommentsArea extends Component {
         }
     }
     
-    updateCommentary =  (id) => {
-        
+    updateCommentary =  (commentary) => {
+        console.log(commentary)
+        this.setState({
+            editData: {
+                id:commentary._id,
+                trend:commentary.trend,
+                commentary:commentary.commentary
+            }
+        })
 
     }
+
 
     deleteComentary = async (id) => {
         console.log(id);
@@ -42,6 +50,18 @@ class CommentsArea extends Component {
                 this.getCommentaries();
               });
           }
+    }
+
+    search = (trend) => { 
+        console.log(trend);
+        fetch(`http://localhost:3000/api/post/${trend}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            this.setState({
+                commentaries:data.reverse()
+            })
+        })
     }
 
     getCommentaries = () =>{
@@ -81,43 +101,21 @@ class CommentsArea extends Component {
                 <Header
                     header = {"TRENDI"}
                     handleLogout = {this.handleLogout}
+                    search = {this.search}
                 />
-                <div className="container mt-2">
-                    <div className="row">
-                        <div className="col-md-3  ">
-                            <TextBoxForm
-                                username = {this.state.username}
-                                getCommentaries = {this.getCommentaries}
-                            />
+               
+                <TextBoxForm
+                    username = {this.state.username}
+                    getCommentaries = {this.getCommentaries}
+                    commentaryToUpdate = {this.state.editData}
+                    commentaries = {this.state.commentaries}
+                    deleteComentary = {this.deleteComentary}
+                />
                             
-                        </div>
-                        <div className="col-xl-9 bg-secondary ">
+                        
 
-                                {   
-                                    this.state.commentaries.map(commentary =>{
-                                        return(
-                                            <div 
-                                            key = {commentary._id}
-                                            className="row mt-1 mb-1">
-
-                                            <div className="col-md-8 "
-                                                >
-                                                <Commentary
-                                                    commentary = {commentary}
-                                                    deleteCommentary = {this.deleteComentary}
-                                                    updateCommentary = {this.updateCommentary}
-                                                />
-                                            </div>
-                                        </div>
-                                        )
-                                    }
-                                    )
-                                }
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+          
+        </div>
         )
     }
 }

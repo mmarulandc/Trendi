@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-
+import Commentary from './Commentary';
 export default class TextBoxForm extends Component {
     
     state = {
         username: '',
         trend: '',
-        commentary: ''
+        commentary: '',
+        id: ''
     }
 
     getCommentaries = () =>{
@@ -18,29 +19,58 @@ export default class TextBoxForm extends Component {
         })
    }
 
+   updateCommentary = (commentary) => {
+    this.setState({
+        trend:commentary.trend,
+        commentary:commentary.commentary,
+        id:commentary._id,
+    })
+   }
+
     onSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
-        fetch('http://localhost:3000/api/post/',{
-            method:'POST',
-            body: JSON.stringify(this.state),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-          }
-        }).then(res => res.json()).then(data => {
-            console.log(data)
-            this.setState({
-                username:localStorage.getItem('username'),
-                trend:'',
-                commentary:''
-            })
-            this.props.getCommentaries();
-        }).catch(err => console.log(err))
+        
+        if(this.state.id) {
+            console.log("hay id")
+            fetch(`http://localhost:3000/api/post/${this.state.id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                  trend: this.state.trend,
+                  commentary: this.state.commentary,
+                  id:this.state.id
+                }),
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then(res => res.json())
+                .then(data => {
+                    alert( 'Comment Updated');
+                    this.setState({id: '', trend: '', commentary: ''});
+                    this.props.getCommentaries();
+                });
+        } else {
+            console.log("no hay nada")
+            fetch('http://localhost:3000/api/post/',{
+                method:'POST',
+                body: JSON.stringify(this.state),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+              }
+            }).then(res => res.json()).then(data => {
+                this.setState({
+                    username:localStorage.getItem('username'),
+                    trend:'',
+                    commentary:''
+                })
+                this.props.getCommentaries();
+            }).catch(err => console.log(err))
+        }
         
     }
     componentWillReceiveProps(){
-        console.log(this.props)
         this.setState({
             username:this.props.username
         })
@@ -57,20 +87,46 @@ export default class TextBoxForm extends Component {
     }
     render() { 
         return(
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <div className="card">
-                        <div className="card-body">
-                            <h3 className="card-title">{"@"+this.props.username}</h3>
-                            <div className="form-group">
-                                <input className="form-control mb-2" value={this.state.trend} name="trend" id="trend" placeholder="Trend" onChange={this.onChange}/>
-                                <textarea  className="form-control" value={this.state.commentary} name="commentary" id="commentary" cols="30" rows="5" onChange={this.onChange}></textarea>
-                                <button className="btn btn-primary mt-2" type="submit" >Postear</button>
-                            </div>
-                        </div>
-                        
+            <div className="container mt-2">
+                    <div className="row">
+                        <div className="col-md-3  ">
+                            <form onSubmit={this.onSubmit}>
+                                <div className="card">
+                                    <div className="card-body">
+                                        <h3 className="card-title">{"@"+this.props.username}</h3>
+                                        <div className="form-group">
+                                            <input className="form-control mb-2" value={this.state.trend} name="trend" id="trend" placeholder="Trend" onChange={this.onChange}/>
+                                            <textarea  className="form-control" value={this.state.commentary} name="commentary" id="commentary" cols="30" rows="5" onChange={this.onChange}></textarea>
+                                            <button className="btn btn-primary mt-2" type="submit" >Postear</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </form>
                     </div>
-                </form>
+                    <div className="col-xl-6 bg-secondary ">
+                            {   
+                                this.props.commentaries.map(commentary =>{
+                                    return(
+                                        <div 
+                                        key = {commentary._id}
+                                        className="row mt-1 mb-1">
+
+                                        <div className="col-md-12 "
+                                            >
+                                            <Commentary
+                                                commentary = {commentary}
+                                                deleteCommentary = {this.props.deleteComentary}
+                                                updateCommentary = {this.updateCommentary}
+                                            />
+                                        </div>
+                                    </div>
+                                    )
+                                }
+                                )
+                            }
+                    </div>
+            </div>
             </div>
         )
     }

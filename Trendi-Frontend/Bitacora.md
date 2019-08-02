@@ -11,3 +11,5 @@
 * 29 de Julio del 2019: Bitacora del desarrollador, terminé correctamente un login y un logout, además de consumir varios servicios para los diferentes post.
 
 * 30 de Julio del 2019: Bitacora del desarrollador, terminé 3 operaciones CRUD el día de hoy. Queda faltando editar y buscar.
+
+* 2 de Agosto del 2019: Bitacora del desarrollador, Acabo de terminar la aplicación. Consumí los servicios de busqueda y edición.

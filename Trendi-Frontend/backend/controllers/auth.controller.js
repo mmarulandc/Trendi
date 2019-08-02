@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 
 authCtrl.login = (req,res,next) => {
     let FindedUser;
-    
     User.findOne({username: req.body.username})
         .then(user =>  {
             if(!user) {
