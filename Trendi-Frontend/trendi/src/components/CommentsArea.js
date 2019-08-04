@@ -3,7 +3,6 @@ import Header from './Header';
 import AuthService from '../AuthService';
 import WithAuth from '../WithAuth';
 import TextBoxForm from './TextBoxForm';
-import Commentary from './Commentary';
 const Auth = new AuthService();
 
 class CommentsArea extends Component {
@@ -37,7 +36,7 @@ class CommentsArea extends Component {
     deleteComentary = async (id) => {
         console.log(id);
         if(window.confirm('Are you sure you want to delete it?')) {
-            fetch(`http://localhost:3000/api/post/${id}`, {
+            fetch(`/api/post/${id}`, {
               method: 'DELETE',
               headers: {
                 'Accept': 'application/json',
@@ -54,7 +53,7 @@ class CommentsArea extends Component {
 
     search = (trend) => { 
         console.log(trend);
-        fetch(`http://localhost:3000/api/post/${trend}`)
+        fetch(`api/post/${trend}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -65,7 +64,7 @@ class CommentsArea extends Component {
     }
 
     getCommentaries = () =>{
-         fetch('http://localhost:3000/api/post/')
+         fetch('/api/post/')
          .then(res => res.json())
          .then(data => {
              console.log(data)
@@ -90,7 +89,7 @@ class CommentsArea extends Component {
 
     handleLogout = () => {
         Auth.logout();
-        this.props.history.replace('/login');
+        this.props.history.replace('/');
     }
 
 

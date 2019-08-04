@@ -3,6 +3,7 @@ import CommentsArea from './components/CommentsArea';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import NotFound from './components/NotFound';
 
 class App extends React.Component {
 
@@ -27,12 +28,14 @@ class App extends React.Component {
       <BrowserRouter>
       <div className="App">
 
-  
+   
 
         <Switch>
-          <Route path="/login" render={(props) => <LoginForm {...props} sendName={this.sendName}/>}/>
+
+          <Route exact path="/" render={(props) => <LoginForm {...props} sendName={this.sendName}/>}/>
           <Route path="/signup" component={SignupForm}/>
           <Route path="/trendi" render={(props) => <CommentsArea {...props} username={this.state.username}/>}/>
+          <Route component = {NotFound}/>}/>
         </Switch>
       </div>
       </BrowserRouter>

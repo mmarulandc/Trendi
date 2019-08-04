@@ -13,3 +13,5 @@
 * 30 de Julio del 2019: Bitacora del desarrollador, terminé 3 operaciones CRUD el día de hoy. Queda faltando editar y buscar.
 
 * 2 de Agosto del 2019: Bitacora del desarrollador, Acabo de terminar la aplicación. Consumí los servicios de busqueda y edición.
+
+* 4 de Agosto del 2019, Bitacora del desarrollador: Acabo de usar Docker y Docker-compose para contenerizar los servicios. Además de poner la app en modo producción

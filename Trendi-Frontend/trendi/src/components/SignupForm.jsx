@@ -23,7 +23,7 @@ export default class SignupForm extends Component {
     }
 
     signup = (data) => {
-        fetch('http://localhost:3000/api/auth/signup', {
+        fetch('/api/auth/signup', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -77,7 +77,7 @@ export default class SignupForm extends Component {
                                         onChange={this.handleChange}/>
                                     </div>
                                     <button type="submit" class="btn btn-primary mb-2">Registro</button>
-                                    <label className="ml-5"><Link to="/login">Ya tienes cuenta? logeate</Link></label>
+                                    <label className="ml-5"><Link to="/">Ya tienes cuenta? logeate</Link></label>
                                 </form>
                             </div>
                         </div>

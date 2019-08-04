@@ -10,7 +10,7 @@ export default class TextBoxForm extends Component {
     }
 
     getCommentaries = () =>{
-        fetch('http://localhost:3000/api/post/')
+        fetch('/api/post/')
         .then(res => res.json())
         .then(data => {
             this.setState({
@@ -32,7 +32,7 @@ export default class TextBoxForm extends Component {
         
         if(this.state.id) {
             console.log("hay id")
-            fetch(`http://localhost:3000/api/post/${this.state.id}`, {
+            fetch(`/api/post/${this.state.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                   trend: this.state.trend,
@@ -52,7 +52,7 @@ export default class TextBoxForm extends Component {
                 });
         } else {
             console.log("no hay nada")
-            fetch('http://localhost:3000/api/post/',{
+            fetch('/api/post/',{
                 method:'POST',
                 body: JSON.stringify(this.state),
                 headers: {
