@@ -4,12 +4,27 @@ services:
   backend:
     image: backend
     build: .
+    environment:
+      VIRTUAL_HOST: mmarulandc.dis.eafit.edu.co
+    restart: always
     ports:
       - 3000:3000
     links:
       - mongo
+
   mongo:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
+    privileged: true
