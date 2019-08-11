@@ -15,3 +15,6 @@
 * 2 de Agosto del 2019: Bitacora del desarrollador, Acabo de terminar la aplicación. Consumí los servicios de busqueda y edición.
 
 * 4 de Agosto del 2019, Bitacora del desarrollador: Acabo de usar Docker y Docker-compose para contenerizar los servicios. Además de poner la app en modo producción
+
+![Captura](https://user-images.githubusercontent.com/38899658/62430236-65006e00-b6df-11e9-9832-13409bd6bd73.PNG)
+![Captura](https://user-images.githubusercontent.com/38899658/62430265-d93b1180-b6df-11e9-8284-daa8a80e457f.PNG)
