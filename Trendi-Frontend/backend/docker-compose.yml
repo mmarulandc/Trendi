@@ -5,7 +5,7 @@ services:
     image: backend
     build: .
     environment:
-      VIRTUAL_HOST: mmarulandc.dis.eafit.edu.co
+      VIRTUAL_HOST: https://mmarulandc.dis.eafit.edu.co
     restart: always
     ports:
       - 3000:3000
