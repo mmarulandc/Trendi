@@ -15,7 +15,7 @@ services:
       # - /etc/letsencrypt/:/etc/letsencrypt/
     environment:
       - APPLICATION_URL=http://ec2-3-83-112-152.compute-1.amazonaws.com
-    depends_on:
+    links:
       - backend
 
   backend:
@@ -25,6 +25,8 @@ services:
     restart: always
     ports:
       - 3000:3000
+    depends_on:
+      - nginx
     links:
       - mongo
 
