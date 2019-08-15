@@ -10,13 +10,24 @@ services:
       DHPARAM_GENERATION: 0
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /etc/nginx/certs 
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
 
+  nginx-proxy-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    environment: "DEFAULT_EMAIL=marulandamateo@gmail.com"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - nginx-proxy
 
   backend:
     image: backend
     build: .
     environment:
       VIRTUAL_HOST: ec2-3-83-112-152.compute-1.amazonaws.com
+      LETSENCRYPT_HOST: othersubdomain.yourdomain.tld
     restart: always
     ports:
       - 3000:3000
