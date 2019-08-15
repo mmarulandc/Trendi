@@ -16,7 +16,8 @@ services:
 
   nginx-proxy-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
-    environment: DEFAULT_EMAIL: marulandamateo@gmail.com
+    environment: 
+      DEFAULT_EMAIL: marulandamateo@gmail.com
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     volumes_from:
