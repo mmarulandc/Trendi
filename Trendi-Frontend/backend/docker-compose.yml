@@ -1,6 +1,14 @@
 version: '2.1'
 
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
   backend:
     image: backend
     build: .
@@ -18,13 +26,3 @@ services:
     ports:
       - "27017:27017"
 
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    ports:
-      - "80:80"
-      - "443:443"
-      
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    restart: always
-    privileged: true
