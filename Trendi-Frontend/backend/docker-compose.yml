@@ -6,8 +6,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    environment:
-      DHPARAM_GENERATION: 0
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /etc/nginx/certs 
@@ -28,7 +26,7 @@ services:
     build: .
     environment:
       VIRTUAL_HOST: ec2-3-83-112-152.compute-1.amazonaws.com
-      LETSENCRYPT_HOST: othersubdomain.yourdomain.tld
+      LETSENCRYPT_HOST: ec2-3-83-112-152.compute-1.amazonaws.com
     restart: always
     ports:
       - 3000:3000
