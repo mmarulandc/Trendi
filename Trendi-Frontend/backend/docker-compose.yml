@@ -8,9 +8,11 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /etc/nginx/certs 
+      - /etc/ssl/certs:/etc/nginx/certs 
       - /etc/nginx/vhost.d
       - /usr/share/nginx/html
+    VIRTUAL_HOST: ec2-3-83-112-152.compute-1.amazonaws.com
+    LETSENCRYPT_HOST: trendi.gq
 
   nginx-proxy-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
