@@ -14,7 +14,7 @@ services:
     image: backend
     build: .
     environment:
-      VIRTUAL_HOST=trendi.gq
+      VIRTUAL_HOST: ec2-3-83-112-152.compute-1.amazonaws.com
     restart: always
     ports:
       - 3000:3000
