@@ -14,7 +14,7 @@ services:
     image: backend
     build: .
     environment:
-      VIRTUAL_HOST: trendi.gq
+      VIRTUAL_HOST=trendi.gq
     restart: always
     ports:
       - 3000:3000
