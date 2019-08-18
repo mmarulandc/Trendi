@@ -18,3 +18,20 @@
 
 ![Captura](https://user-images.githubusercontent.com/38899658/62430236-65006e00-b6df-11e9-9832-13409bd6bd73.PNG)
 ![Captura](https://user-images.githubusercontent.com/38899658/62430265-d93b1180-b6df-11e9-8284-daa8a80e457f.PNG)
+
+* 11 de Agosto del 2019, Bitacora del desarrollador: Acabo de montar la aplicación en el DCA de Eafit. Este es accesible por medio de http://mmarulandc.dis.eafit.edu.co/, además conseguí un dominio terminado en .gq para la aplicación.
+
+![Captura](https://user-images.githubusercontent.com/38899658/63229251-2630e480-c1c4-11e9-9601-fb9e1cc0a739.PNG)
+![Captura](https://user-images.githubusercontent.com/38899658/63229289-917ab680-c1c4-11e9-9b6a-7ca493e942f2.PNG)
+
+
+
+
+* 16 de agosto del 2019, cree una ec2 en AWS y monté la aplicación ahí. Y conseguí un certificado SSL por medio de https://letsencrypt.status.io/
+
+
+![Captura](https://user-images.githubusercontent.com/38899658/63229285-7c9e2300-c1c4-11e9-8d01-efc90743300e.PNG)
+![Captura](https://user-images.githubusercontent.com/38899658/63229308-c2f38200-c1c4-11e9-9808-444a8fe3d448.PNG)
+
+*Terminé la aplicación
+
