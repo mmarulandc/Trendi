@@ -39,31 +39,38 @@ authCtrl.login = (req,res,next) => {
         });
 };
 
-authCtrl.signup = (req,res,next) => {
-    console.log(req.body)
-    bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-    
-        const user = new User({
-            username : req.body.username ,  
-            password: hash
+authCtrl.signup = async (req,res,next) => {
+    try {
+        let {username, password} = req.body;
+        let hashed;
+        let user;
+        let foundUsers = await User.findOne({username:username});
+        if(foundUsers) { 
+            return res.status(400).json({
+                success: false,
+                message:'el usuario ya existe'
+            })
+        }
+        console.log(bcrypt.hashSync(req.body.password, 10))
         
+        user = new User({
+            username: username,
+            password: bcrypt.hashSync(req.body.password, 10)
+ 
         });
-        user.save()
-        .then(result => {
-            console.log("Usuario Creado ");
-            console.log(result);
-            res.status(201).json({
-                message: 0
-            });
+        await user.save();
+        res.status(200).json({
+            success: true,
+            message:'usuario guardado con exito'
         })
-        .catch(err => {
-            res.status(500).json({
-                message: 1,
-                error: err
-            });
-        });
-    });  
+    } catch(error) {
+        console.log(`Ha ocurrido un error ${error}`);
+        return res.status(500).json({
+            success: false,
+            message: `Ha ocurrido un error, por favor intente más tarde`
+        })
+    }
+    
     
 };
 

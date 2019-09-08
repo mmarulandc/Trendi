@@ -10,7 +10,7 @@ export default class LoginForm extends Component {
         super();
         this.state = {
             username:'',
-            password:''
+            password:'',
         }
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
