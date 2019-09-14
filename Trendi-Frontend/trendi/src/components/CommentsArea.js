@@ -39,6 +39,7 @@ class CommentsArea extends Component {
             fetch(`/api/post/${id}`, {
               method: 'DELETE',
               headers: {
+                'Authorization':localStorage.getItem('id_token'),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               }
@@ -53,7 +54,14 @@ class CommentsArea extends Component {
 
     search = (trend) => { 
         console.log(trend);
-        fetch(`api/post/${trend}`)
+        fetch(`api/post/${trend}`,{
+            method:'GET',
+            headers: {
+                'Authorization':localStorage.getItem('id_token'),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+          }
+        })
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -64,7 +72,14 @@ class CommentsArea extends Component {
     }
 
     getCommentaries = () =>{
-         fetch('/api/post/')
+         fetch('/api/post/',{
+            method:'GET',
+            headers: {
+                'Authorization':localStorage.getItem('id_token'),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+          }
+         })
          .then(res => res.json())
          .then(data => {
              console.log(data)

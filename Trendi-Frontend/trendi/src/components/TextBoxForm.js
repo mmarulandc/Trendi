@@ -6,7 +6,9 @@ export default class TextBoxForm extends Component {
         username: '',
         trend: '',
         commentary: '',
-        id: ''
+        id: '',
+        error: '',
+        hidden: true
     }
 
     getCommentaries = () =>{
@@ -24,14 +26,21 @@ export default class TextBoxForm extends Component {
         trend:commentary.trend,
         commentary:commentary.commentary,
         id:commentary._id,
-    })
+    });
+  
    }
 
     onSubmit = (event) => {
+        let {trend, commentary} = this.state;
         event.preventDefault();
-        
+        if(trend === '' || commentary === '') {
+            this.setState({
+                error: 'Todos los campos son obligatorios',
+                hidden: false
+            });
+            return;
+        }
         if(this.state.id) {
-            console.log("hay id")
             fetch(`/api/post/${this.state.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
@@ -40,6 +49,7 @@ export default class TextBoxForm extends Component {
                   id:this.state.id
                 }),
                 headers: {
+                    'Authorization':localStorage.getItem('id_token'),
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
                 }
@@ -47,15 +57,21 @@ export default class TextBoxForm extends Component {
                 .then(res => res.json())
                 .then(data => {
                     alert( 'Comment Updated');
-                    this.setState({id: '', trend: '', commentary: ''});
+                    this.setState({id: '', trend: '', commentary: '', error: ''});
                     this.props.getCommentaries();
                 });
         } else {
-            console.log("no hay nada")
             fetch('/api/post/',{
                 method:'POST',
-                body: JSON.stringify(this.state),
+                body: JSON.stringify({
+                    username: this.state.username,
+                    trend: this.state.trend,
+                    commentary: this.state.commentary,
+                    id: this.state.id,
+
+                }),
                 headers: {
+                    'Authorization':localStorage.getItem('id_token'),
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
               }
@@ -63,7 +79,8 @@ export default class TextBoxForm extends Component {
                 this.setState({
                     username:localStorage.getItem('username'),
                     trend:'',
-                    commentary:''
+                    commentary:'',
+                    error: ''
                 })
                 this.props.getCommentaries();
             }).catch(err => console.log(err))
@@ -74,7 +91,6 @@ export default class TextBoxForm extends Component {
         this.setState({
             username:this.props.username
         })
-        console.log(this.state)
     }
 
     onChange= (event) => {
@@ -86,6 +102,7 @@ export default class TextBoxForm extends Component {
         })
     }
     render() { 
+        let {error} = this.state;
         return(
             <div className="container mt-2">
                     <div className="row">
@@ -99,8 +116,8 @@ export default class TextBoxForm extends Component {
                                             <textarea  className="form-control" value={this.state.commentary} name="commentary" id="commentary" cols="30" rows="5" onChange={this.onChange}></textarea>
                                             <button className="btn btn-primary mt-2" type="submit" >Postear</button>
                                         </div>
+                                        <label>{error}</label>
                                     </div>
-                                    
                                 </div>
                             </form>
                     </div>

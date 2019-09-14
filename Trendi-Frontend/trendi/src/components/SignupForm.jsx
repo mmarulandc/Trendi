@@ -66,6 +66,7 @@ export default class SignupForm extends Component {
             return;
         }
         let regex = /[a-zA-Z0-9]/;
+        let passwordRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
         if(!regex.test(username)){
             this.setState({
                 error: 'El campo usuario solo debe tener alfanumericos',
@@ -73,6 +74,14 @@ export default class SignupForm extends Component {
             });
             return;
         }
+        if(!passwordRegex.test(password)) { 
+            this.setState({
+                error: 'La contraseña debe contener al menos una mayuscula, un número y un caracter especial ',
+                hidden: false
+            });
+            return;
+        }
+        
         
 
         this.signup({

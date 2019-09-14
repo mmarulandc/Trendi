@@ -3,6 +3,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/User.Model");
 const jwt = require("jsonwebtoken");
+const checkAuth = require('../middleware/check-auth');
+
 
 
 authCtrl.login = (req,res,next) => {

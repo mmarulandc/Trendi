@@ -11,6 +11,8 @@ export default class LoginForm extends Component {
         this.state = {
             username:'',
             password:'',
+            error: '',
+            hideen: true
         }
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
@@ -19,6 +21,22 @@ export default class LoginForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        let {username, password} = this.state;
+        if(username === '' || password === '') {
+            this.setState({
+                error: 'Todos los campos son obligatorios',
+                hidden: false
+            });
+            return;
+        }
+        let regex = /[a-zA-Z0-9]/;
+        if(!regex.test(username)){
+            this.setState({
+                error: 'El campo usuario solo debe tener alfanumericos',
+                hidden: false
+            });
+            return;
+        }
         this.props.sendName(this.state.username);
         this.Auth.login(this.state.username,this.state.password)
             .then(res =>{
@@ -27,6 +45,7 @@ export default class LoginForm extends Component {
             .catch(err =>{
                 alert(err);
             })
+        
     }
 
     handleChange = (event) => {
@@ -38,6 +57,7 @@ export default class LoginForm extends Component {
     }
 
     render() {
+        let {error,hidden} = this.state;
         return (
             <div>
                 <div className="container mt-3 " >
@@ -55,6 +75,7 @@ export default class LoginForm extends Component {
                                     <button type="submit" className="btn btn-primary mb-2">Ingreso</button>
                                     <label className="ml-5"><Link to="/signup">Registrate</Link></label>
                                 </form>
+                                <label>{error}</label>
                             </div>
                         </div>
                     </div>
